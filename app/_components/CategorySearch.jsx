@@ -6,8 +6,9 @@ import { Search } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import GlobalApi from "../_utils/GlobalApi";
 import Image from "next/image";
+import Link from "next/link";
 
-function CategorySearch() {
+function CategorySearch({}) {
   const [categoryList, setCategoryList] = useState([]);
   useEffect(() => {
     getCategoryList();
@@ -38,17 +39,30 @@ function CategorySearch() {
 
       {/* Display List of Categories */}
       <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 mt-5">
-        {categoryList.map((item, index) =>index<6&& (
-          <div key={index} className=" flex flex-col text-center gap-2 items-center p-5 bg-blue-50 m-2 rounded-lg hover:scale-110 transition-all ease-in-out cursor-pointer">
-            <Image
-              src={item.attributes?.Icon?.data.attributes?.url}
-              alt="icon"
-              width={40}
-              height={40}
-            />
-            <label className=" text-blue-600 text-sm">{item.attributes?.Name}</label>
-          </div>
-        ))}
+        {categoryList.length > 0
+          ? categoryList.map(
+              (item, index) =>
+                index < 6 && (
+                  <Link
+                  href={'/search/'+item.attributes.Name}
+                    key={index}
+                    className=" flex flex-col text-center gap-2 items-center p-5 bg-blue-50 m-2 rounded-lg hover:scale-110 transition-all ease-in-out cursor-pointer"
+                  >
+                    <Image
+                      src={item.attributes?.Icon?.data.attributes?.url}
+                      alt="icon"
+                      width={40}
+                      height={40}
+                    />
+                    <label className=" text-blue-600 text-sm">
+                      {item.attributes?.Name}
+                    </label>
+                  </Link>
+                )
+            )
+          : [1, 2, 3, 4, 5, 6].map((item, index) => (
+              <div className="h-[120px] w-[130px] m-2 bg-slate-200 rounded-lg animate-pulse "></div>
+            ))}
       </div>
     </div>
   );
