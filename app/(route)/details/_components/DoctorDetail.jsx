@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { GraduationCap, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import BookAppointment from "./BookAppointment";
 
 function DoctorDetail({ doctor }) {
 
@@ -57,7 +58,7 @@ function DoctorDetail({ doctor }) {
             <Image key={index} src={item.icon} width={30} height={30} alt="icon" className=" m-1 border rounded-md p"/>
           ))}
         </div>
-        <Button className=' mt-3 rounded-full border border-primary hover:bg-white hover:text-primary transition-all ease-in-out'>Book Appointment</Button>
+        <BookAppointment />
       </div>
       {/* About Doctor */}
       <div className="mt-5 col-span-2 px-8">
