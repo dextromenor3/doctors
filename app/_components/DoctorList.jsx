@@ -1,7 +1,8 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
-function DoctorList({ doctorList, heading='Popular Doctors' }) {
+function DoctorList({ doctorList, heading = "Popular Doctors" }) {
   return (
     <div className=" mb-10 px-8">
       <h2 className=" font-bold text-xl">{heading}</h2>
@@ -31,17 +32,16 @@ function DoctorList({ doctorList, heading='Popular Doctors' }) {
                   <h2 className=" text-gray-500 text-sm">
                     {item.attributes?.Address}
                   </h2>
-
-                  <h2 className=" p-2 px-3 border-[1px] border-primary text-primary rounded-full w-full text-center text-[11px] mt-2 cursor-pointer hover:bg-primary hover:text-white transition-all ease-in-out">
-                    Book Now
-                  </h2>
+                  <Link href={"/details/" + item?.id}>
+                    <h2 className=" p-2 px-3 border-[1px] border-primary text-primary rounded-full w-full text-center text-[11px] mt-2 cursor-pointer hover:bg-primary hover:text-white transition-all ease-in-out">
+                      Book Now
+                    </h2>
+                  </Link>
                 </div>
               </div>
             ))
           : [1, 2, 3, 4, 5, 6].map((item, index) => (
-              <div className=" h-[220px] bg-slate-200 w-full rounded-lg animate-pulse">
-
-              </div>
+              <div className=" h-[220px] bg-slate-200 w-full rounded-lg animate-pulse"></div>
             ))}
       </div>
     </div>
